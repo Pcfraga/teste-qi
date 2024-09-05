@@ -7,10 +7,13 @@ class TarefasScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Lista de Tarefas'),
-        backgroundColor: const Color.fromARGB(255, 62, 11, 216), // Define o fundo azul do AppBar
-      ),
-      backgroundColor: const Color.fromARGB(255, 47, 33, 243), // Define o fundo azul para a tela inteira
+  title: const Text(
+    'Lista de Tarefas',
+    style: TextStyle(color: Colors.white), // Define o texto branco na AppBar
+  ),
+  backgroundColor: const Color.fromARGB(255, 62, 11, 216), // Fundo azul da AppBar
+  iconTheme: const IconThemeData(color: Colors.white), // Define a cor dos ícones como branco
+), // Define o fundo azul para a tela inteira
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView.builder(
@@ -34,7 +37,11 @@ class TarefasScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                subtitle: Text('Data: ${tarefa['date']!}\nHora: ${tarefa['time']!}'),
+               subtitle: Text(
+  'Data: ${tarefa['date']!}\n'
+  'Hora: ${tarefa['time']!}\n'
+  'Descrição: ${tarefa['description']!}', // Exibe a descrição da tarefa
+),
                 onTap: () {
                   Navigator.pushNamed(
                     context,
@@ -46,14 +53,19 @@ class TarefasScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     TextButton(
-                      child: const Text(
-                        'Editar',
-                        style: TextStyle(color: Colors.blue),
-                      ),
-                      onPressed: () {
-                        // Implemente a lógica de edição aqui
-                      },
-                    ),
+  child: const Text(
+    'Editar',
+    style: TextStyle(color: Colors.blue),
+  ),
+  onPressed: () {
+    Navigator.pushNamed(
+      context,
+      '/editTask',
+      arguments: tarefa, // Envia os dados da tarefa como argumento para a tela de edição
+    );
+  },
+),
+
                     TextButton(
                       child: const Text(
                         'Excluir',
